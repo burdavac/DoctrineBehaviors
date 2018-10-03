@@ -114,7 +114,7 @@ trait TranslatableMethods
             }
         }
 
-        if ($translation) {
+        if ($translation && $translation->id) {
             return $translation;
         }
 
@@ -134,7 +134,7 @@ trait TranslatableMethods
     public function mergeNewTranslations()
     {
         foreach ($this->getNewTranslations() as $newTranslation) {
-            if (!$this->getTranslations()->contains($newTranslation) && !$newTranslation->isEmpty()) {
+            if (!$this->getTranslations()->contains($newTranslation)) {
                 $this->addTranslation($newTranslation);
                 $this->getNewTranslations()->removeElement($newTranslation);
             }
